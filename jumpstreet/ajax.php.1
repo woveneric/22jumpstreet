@@ -1,0 +1,25 @@
+<?php 
+include '../../../wp-load.php';
+
+
+$id=$_GET["id"];
+$offset=$_GET["offset"];
+?>
+				<?php query_posts("cat=6&showposts=1&offset=".$offset."&orderby=date&order=DESC&paged=$page"); 
+
+			 if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
+			
+			
+				<article class="blog-post col-sm-6">
+					<div id="featured-img">
+						<a href="<?php the_permalink(); ?>"><?php echo get_the_post_thumbnail($page->ID, 'full'); ?></a>
+					</div>
+					<h3><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h3>
+					<p><?php the_excerpt(); ?></p>
+					<a href="<?php the_permalink(); ?>" class="read-more">Read More</a>
+					
+				</article>
+			<?php endwhile; endif; ?> <?php wp_reset_query(); ?> 	
+
+
+
